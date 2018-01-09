@@ -1,11 +1,11 @@
 class Bookmark < ApplicationRecord
   # Direct associations
 
-  belongs_to :venue
+  belongs_to :venue,
+             :counter_cache => true
 
-  belongs_to :user
-
-  belongs_to :dish
+  belongs_to :dish,
+             :counter_cache => true
 
   # Indirect associations
 
