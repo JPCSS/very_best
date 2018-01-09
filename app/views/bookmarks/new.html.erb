@@ -36,9 +36,6 @@
         <%= select_tag(:dish_id, options_from_collection_for_select(Dish.all, :id, :name, @bookmark.dish_id), :class => "form-control") %>
       </div>
 
-      <!-- Label and input for user_id -->
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
-
       <!-- Label and input for notes -->
       <div class="form-group">
         <label for="notes" class="control-label">
@@ -47,6 +44,9 @@
 
         <input type="text" id="notes" name="notes" placeholder="Notes" class="form-control" value="<%= @bookmark.notes %>">
       </div>
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
       <button class="btn btn-success">
         Create Bookmark
