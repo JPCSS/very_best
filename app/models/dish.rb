@@ -1,14 +1,17 @@
 class Dish < ApplicationRecord
   # Direct associations
 
-  belongs_to :cuisine
-
-  belongs_to :venue
+  belongs_to :cuisine,
+             :counter_cache => true
 
   has_many   :bookmarks,
              :dependent => :destroy
 
   # Indirect associations
+
+  has_many   :venues,
+             :through => :bookmarks,
+             :source => :venue
 
   # Validations
 

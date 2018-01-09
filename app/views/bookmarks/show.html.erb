@@ -23,6 +23,9 @@
         <% end %>
       </dd>
 
+      <dt>Notes</dt>
+      <dd><%= @bookmark.notes %></dd>
+
       <dt>User</dt>
       <dd>
         <% if @bookmark.user.present? %>
@@ -31,9 +34,6 @@
           </a>
         <% end %>
       </dd>
-
-      <dt>Notes</dt>
-      <dd><%= @bookmark.notes %></dd>
 
     </dl>
 
