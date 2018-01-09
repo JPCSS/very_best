@@ -84,7 +84,7 @@
           Bookmark
         </label>
 
-        <input type="text" id="bookmark_id" name="bookmark_id" placeholder="Bookmark" class="form-control" value="">
+        <%= select_tag(:bookmark_id, options_from_collection_for_select(Bookmark.all, :id, :venue_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-block btn-success">

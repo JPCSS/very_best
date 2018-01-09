@@ -27,7 +27,13 @@
       </dd>
 
       <dt>Bookmark</dt>
-      <dd><%= @dish.bookmark_id %></dd>
+      <dd>
+        <% if @dish.bookmark.present? %>
+          <a href="/bookmarks/<%= @dish.bookmark_id %>">
+            <%= @dish.bookmark.venue_id %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

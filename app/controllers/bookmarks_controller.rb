@@ -11,12 +11,13 @@ class BookmarksController < ApplicationController
 
   def index
     @q = Bookmark.ransack(params[:q])
-    @bookmarks = @q.result(:distinct => true).includes(:dish, :user, :venue).page(params[:page]).per(10)
+    @bookmarks = @q.result(:distinct => true).includes(:dish, :user, :venue, :dishes).page(params[:page]).per(10)
 
     render("bookmarks/index.html.erb")
   end
 
   def show
+    @dish = Dish.new
     @bookmark = Bookmark.find(params[:id])
 
     render("bookmarks/show.html.erb")
