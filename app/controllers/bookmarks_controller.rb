@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  before_action :current_user_must_be_bookmark_user, :only => [:edit, :update, :destroy]
+  before_action :current_user_must_be_bookmark_user, :only => [:show, :edit, :update, :destroy]
 
   def current_user_must_be_bookmark_user
     bookmark = Bookmark.find(params[:id])
@@ -10,8 +10,8 @@ class BookmarksController < ApplicationController
   end
 
   def index
-    @q = Bookmark.ransack(params[:q])
-    @bookmarks = @q.result(:distinct => true).includes(:dish, :user, :venue).page(params[:page]).per(10)
+    @q = current_user.bookmarks.ransack(params[:q])
+      @bookmarks = @q.result(:distinct => true).includes(:dish, :user, :venue).page(params[:page]).per(10)
 
     render("bookmarks/index.html.erb")
   end
@@ -33,8 +33,8 @@ class BookmarksController < ApplicationController
 
     @bookmark.venue_id = params[:venue_id]
     @bookmark.dish_id = params[:dish_id]
-    @bookmark.user_id = params[:user_id]
     @bookmark.notes = params[:notes]
+    @bookmark.user_id = params[:user_id]
 
     save_status = @bookmark.save
 
@@ -63,8 +63,8 @@ class BookmarksController < ApplicationController
 
     @bookmark.venue_id = params[:venue_id]
     @bookmark.dish_id = params[:dish_id]
-    @bookmark.user_id = params[:user_id]
     @bookmark.notes = params[:notes]
+    @bookmark.user_id = params[:user_id]
 
     save_status = @bookmark.save
 
