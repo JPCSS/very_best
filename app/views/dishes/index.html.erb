@@ -14,18 +14,6 @@
   </div>
 
 <div class="form-group">
-  <%= f.label :bookmark_id, "Bookmark" %>
-  <div class="row">
-    <div class='col-md-6 mb-1'>
-      <%= f.text_field :bookmark_id_gteq, :class => "form-control", :placeholder => "Bookmark greater than or equal to" %>
-    </div>
-    <div class='col-md-6'>
-      <%= f.text_field :bookmark_id_lteq, :class => "form-control", :placeholder => "Bookmark less than or equal to" %>
-    </div>
-  </div>
-</div>
-
-<div class="form-group">
           <%= f.label :created_at, "Created at" %>
           <div class="row">
             <div class='col-md-6 mb-1'>
@@ -113,7 +101,13 @@
             </a>
           <% end %>
         </td>
-        <td><%= dish.bookmark_id %></td>
+        <td>
+          <% if dish.bookmark.present? %>
+            <a href="/bookmarks/<%= dish.bookmark.id %>">
+              <%= dish.bookmark.venue_id %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/dishes/<%= dish.id %>" class="btn btn-primary">Show</a>
           <a href="/dishes/<%= dish.id %>/edit" class="btn btn-warning">Edit</a>
