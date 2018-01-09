@@ -9,6 +9,18 @@
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
+  <%= f.label :cuisine_id, "Cuisine" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :cuisine_id_gteq, :class => "form-control", :placeholder => "Cuisine greater than or equal to" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.text_field :cuisine_id_lteq, :class => "form-control", :placeholder => "Cuisine less than or equal to" %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
     <%= f.label :notes_cont, "Notes contains" %>
     <%= f.text_field :notes_cont, :class => "form-control", :placeholder => "Notes contains" %>
   </div>
@@ -59,11 +71,6 @@
     </div>
 
 <div class="form-group">
-      <%= f.label :user_email_cont, "User email contains" %>
-      <%= f.text_field :user_email_cont, :class => "form-control", :placeholder => "User email contains" %>
-    </div>
-
-<div class="form-group">
       <%= f.label :venue_name_cont, "Venue name contains" %>
       <%= f.text_field :venue_name_cont, :class => "form-control", :placeholder => "Venue name contains" %>
     </div>
@@ -84,8 +91,8 @@
       <tr>
         <th>Venue</th>
         <th>Dish</th>
-        <th>User</th>
         <th>Notes</th>
+        <th>Cuisine</th>
         <th>Actions</th>
       </tr>
 
@@ -105,21 +112,12 @@
             </a>
           <% end %>
         </td>
-        <td>
-          <% if bookmark.user.present? %>
-            <a href="/users/<%= bookmark.user.id %>">
-              <%= bookmark.user.email %>
-            </a>
-          <% end %>
-        </td>
         <td><%= bookmark.notes %></td>
+        <td><%= bookmark.cuisine_id %></td>
         <td>
           <a href="/bookmarks/<%= bookmark.id %>" class="btn btn-primary">Show</a>
-          
-          <% if current_user == bookmark.user %>
-            <a href="/bookmarks/<%= bookmark.id %>/edit" class="btn btn-warning">Edit</a>
-            <a href="/delete_bookmark/<%= bookmark.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-          <% end %>
+          <a href="/bookmarks/<%= bookmark.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_bookmark/<%= bookmark.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
       </tr>
       <% end %>

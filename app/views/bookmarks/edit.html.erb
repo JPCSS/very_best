@@ -36,9 +36,6 @@
         <%= select_tag(:dish_id, options_from_collection_for_select(Dish.all, :id, :name, @bookmark.dish_id), :class => "form-control") %>
       </div>
 
-      
-      
-
       <!-- Label and input for notes -->
       <div class="form-group">
         <label for="notes" class="control-label">
@@ -46,6 +43,15 @@
         </label>
 
         <input type="text" id="notes" name="notes" placeholder="Notes" class="form-control" value="<%= @bookmark.notes %>">
+      </div>
+
+      <!-- Label and input for cuisine_id -->
+      <div class="form-group">
+        <label for="cuisine_id" class="control-label">
+          Cuisine
+        </label>
+
+        <input type="text" id="cuisine_id" name="cuisine_id" placeholder="Cuisine" class="form-control" value="<%= @bookmark.cuisine_id %>">
       </div>
 
       <button class="btn btn-warning">

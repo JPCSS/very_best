@@ -1,17 +1,7 @@
 class BookmarksController < ApplicationController
-  before_action :current_user_must_be_bookmark_user, :only => [:edit, :update, :destroy]
-
-  def current_user_must_be_bookmark_user
-    bookmark = Bookmark.find(params[:id])
-
-    unless current_user == bookmark.user
-      redirect_to :back, :alert => "You are not authorized for that."
-    end
-  end
-
   def index
     @q = Bookmark.ransack(params[:q])
-    @bookmarks = @q.result(:distinct => true).includes(:dish, :user, :venue).page(params[:page]).per(10)
+    @bookmarks = @q.result(:distinct => true).includes(:dish, :venue).page(params[:page]).per(10)
 
     render("bookmarks/index.html.erb")
   end
@@ -33,8 +23,8 @@ class BookmarksController < ApplicationController
 
     @bookmark.venue_id = params[:venue_id]
     @bookmark.dish_id = params[:dish_id]
-    @bookmark.user_id = params[:user_id]
     @bookmark.notes = params[:notes]
+    @bookmark.cuisine_id = params[:cuisine_id]
 
     save_status = @bookmark.save
 
@@ -63,8 +53,8 @@ class BookmarksController < ApplicationController
 
     @bookmark.venue_id = params[:venue_id]
     @bookmark.dish_id = params[:dish_id]
-    @bookmark.user_id = params[:user_id]
     @bookmark.notes = params[:notes]
+    @bookmark.cuisine_id = params[:cuisine_id]
 
     save_status = @bookmark.save
 

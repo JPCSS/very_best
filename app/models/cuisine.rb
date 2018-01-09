@@ -2,7 +2,7 @@ class Cuisine < ApplicationRecord
   # Direct associations
 
   has_many   :dishes,
-             :dependent => :destroy
+             :dependent => :nullify
 
   # Indirect associations
 
